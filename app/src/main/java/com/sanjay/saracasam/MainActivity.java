@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     private int page = 0;
     int count=0;
     protected ImageLoader imageLoader = ImageLoader.getInstance();
-    private String gallery_url="http://api.aroundtirupati.com/api/saracasam/";
+    private String gallery_url="http://13.126.191.69/api/saracasam/";
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
 
@@ -108,17 +108,14 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-
             showAlertDialog(MainActivity.this, "No Internet Connection",
                     "You don't have internet connection!", false);
         }
     }
     public void showAlertDialog(Context context, String title, String message, Boolean status) {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-
         // Setting Dialog Title
         alertDialog.setTitle(title);
-
         // Setting Dialog Message
         alertDialog.setMessage(message);
         // Setting OK Button
@@ -302,9 +299,9 @@ public class MainActivity extends AppCompatActivity
         });
         gridView.setOnScrollListener(new EndlessListListener());
         options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.stub_image)
-                .showImageForEmptyUri(R.drawable.image_for_empty_url)
-                .showImageOnFail(R.drawable.image_for_empty_url)
+                .showImageOnLoading(R.drawable.spinner)
+                .showImageForEmptyUri(R.drawable.noimage)
+                .showImageOnFail(R.drawable.broken)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)

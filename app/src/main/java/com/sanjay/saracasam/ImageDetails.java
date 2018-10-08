@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -70,9 +71,9 @@ public class ImageDetails extends AppCompatActivity
 
         //Setting DisplayImageOptions for UIL
         options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.stub_image) //setting image to show on loading
-                .showImageForEmptyUri(R.drawable.image_for_empty_url)
-                .showImageOnFail(R.drawable.image_for_empty_url)
+                .showImageOnLoading(R.drawable.spinner) //setting image to show on loading
+                .showImageForEmptyUri(R.drawable.noimage)
+                .showImageOnFail(R.drawable.broken)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)
@@ -123,9 +124,10 @@ public class ImageDetails extends AppCompatActivity
 
             down.setText(downloads.get(position) + " downloads");
             fav.setText(favs.get(position) + " liked");
-
+            Log.d("", "instantiateItem: "+images.get(position));
             //displaying image using UIL
             imageLoader.displayImage(images.get(position), imageView, options, new SimpleImageLoadingListener() {
+
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
                     spinner.setVisibility(View.VISIBLE);
@@ -155,7 +157,8 @@ public class ImageDetails extends AppCompatActivity
                 }
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-
+                    Log.d("", "onLoadingComplete: "+loadedImage);
+                    Log.d("", "onLoadingComplete: "+imageUri);
                     spinner.setVisibility(View.GONE);
 
                 }
